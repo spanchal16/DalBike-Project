@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DalBike</string>
+    <string name="book_button">Book</string>
 </resources>
