@@ -7,13 +7,13 @@
     tools:context=".loginview">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/bannerId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="B00xxxx"
+        android:hint="B00XXX"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toStartOf="@+id/imageButton"
         app:layout_constraintHorizontal_bias="0.771"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/bannerId"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -40,13 +40,14 @@
         android:layout_marginEnd="84dp"
         android:onClick="fundate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/bannerId"
         app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="checkCred"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

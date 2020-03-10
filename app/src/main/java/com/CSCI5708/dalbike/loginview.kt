@@ -1,17 +1,32 @@
 package com.CSCI5708.dalbike
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_loginview.*
 import java.util.*
 
+
 class loginview : AppCompatActivity() {
+
+    lateinit var ref: DatabaseReference
+    lateinit var bannerId : EditText
+    lateinit var dpd: DatePickerDialog
+    lateinit var dateText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loginview)
+
+        ref = FirebaseDatabase.getInstance().getReference("users")
+
+        bannerId = findViewById(R.id.bannerId)
+        dateText = findViewById(R.id.date1)
+
 
     }
 
@@ -21,11 +36,38 @@ class loginview : AppCompatActivity() {
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        val dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, monthOfYear, dayOfMonth ->
-            date1.text ="$dayOfMonth, $monthOfYear $year"
+        dpd = DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, DatePickerDialog.OnDateSetListener { datePicker, year, monthOfYear, dayOfMonth ->
+            date1.text ="$dayOfMonth/$monthOfYear/$year"
         }, year, month, day)
-
         dpd.show()
+    }
+
+
+    fun checkCred(view: View){
+        var enteredBanner:String = bannerId.text.toString()
+        var enteredDOB = date1.text
+        var bannerId:String = ""
+        var Dob:String = ""
+
+        //Check for user
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError?) {
+
+            }
+            override fun onDataChange(p0: DataSnapshot?) {
+                if(p0!!.exists()){
+                    for(p in p0.children){
+                        val user = p.getValue(Users::class.java)
+                        if(user!!.bannerId.equals(enteredBanner) && user!!.DOB.equals(enteredDOB)){
+                            System.out.println("done")
+                        }else{
+                            System.out.println("error")
+                        }
+                    }
+                }
+            }
+        })
+
     }
 
 
