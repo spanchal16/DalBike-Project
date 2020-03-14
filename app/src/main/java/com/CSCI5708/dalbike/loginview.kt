@@ -1,11 +1,14 @@
 package com.CSCI5708.dalbike
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_loginview.*
 import java.util.*
@@ -27,6 +30,30 @@ class loginview : AppCompatActivity() {
         bannerId = findViewById(R.id.bannerId)
         dateText = findViewById(R.id.date1)
 
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+
+            when(item.itemId){
+
+                R.id.nav_bikes -> {
+                    val intent = Intent(this,HomeActivity::class.java)
+                    startActivity(intent)
+                }
+
+                R.id.nav_profile -> {
+                    val intent = Intent(this,HomeActivity::class.java)
+                    startActivity(intent)
+                }
+
+                R.id.nav_support -> {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                }
+
+            }
+            true
+        }
 
     }
 

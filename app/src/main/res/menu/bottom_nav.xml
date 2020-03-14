@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_bikes"
+        android:icon="@drawable/ic_directions_bike_black_24dp"
+        android:title="BIKES"
+
+        />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/edit"
+        android:title="MYPROFILE"
+
+        />
+
+    <item
+        android:id="@+id/nav_support"
+        android:icon="@drawable/ic_supervisor_account_black_24dp"
+        android:title="SUPPORT"
+
+        />
+
+
+</menu>

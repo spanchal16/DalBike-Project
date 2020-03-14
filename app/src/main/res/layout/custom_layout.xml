@@ -10,9 +10,9 @@
         android:id="@+id/image_view"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:scaleType="centerCrop"
+        android:layout_marginTop="50dp"
         android:elevation="20dp"
-        android:layout_marginTop="50dp"/>
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/textView"
@@ -24,15 +24,12 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/detailsbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="More Details"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="20dp"
+        android:text="MoreDetails" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/homeActivity">
+
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.CSCI5708.dalbike.HomeActivity"
+        android:label="activity_home_activity"
+        tools:layout="@layout/activity_home_activity" >
+        <action
+            android:id="@+id/action_homeActivity_to_detailBikeInfo"
+            app:destination="@id/detailBikeInfo" />
+    </activity>
+    <activity
+        android:id="@+id/detailBikeInfo"
+        android:name="com.CSCI5708.dalbike.DetailBikeInfo"
+        android:label="activity_dal_detail_bike_info"
+        tools:layout="@layout/activity_dal_detail_bike_info" />
+</navigation>

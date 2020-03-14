@@ -1,8 +1,10 @@
 package com.CSCI5708.dalbike
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 
 class MyProfile : AppCompatActivity() {
@@ -30,6 +32,32 @@ class MyProfile : AppCompatActivity() {
 
 
         getUserProfileData()
+
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+
+            when(item.itemId){
+
+                R.id.nav_bikes -> {
+                    val intent = Intent(this,HomeActivity::class.java)
+                    startActivity(intent)
+                }
+
+                R.id.nav_profile -> {
+                    val intent = Intent(this,HomeActivity::class.java)
+                    startActivity(intent)
+                }
+
+                R.id.nav_support -> {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                }
+
+            }
+            true
+        }
+
     }
 
     fun getUserProfileData(){

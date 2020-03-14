@@ -7,6 +7,24 @@
     android:background="#282828"
     tools:context=".MyProfile">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frame_layout"
+        >
+
+        <!-- Main content -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/cardview_dark_background"
+            app:itemTextColor="@color/design_default_color_background"
+            app:menu="@menu/bottom_nav"
+            />
+    </FrameLayout>
     <TextView
         android:id="@+id/tvTotalRides"
         android:layout_width="164dp"
