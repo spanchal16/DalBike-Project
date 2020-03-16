@@ -1,63 +1,29 @@
 package com.CSCI5708.dalbike
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_myprofile.*
 
-class MyProfile : AppCompatActivity() {
+class MyProfile : Fragment() {
 
     lateinit var ref: DatabaseReference
-    lateinit var tvTotalRides : TextView
-    lateinit var tvFineDue : TextView
-    lateinit var tvLoanDate : TextView
-    lateinit var tvDueDate : TextView
-    lateinit var tvName : TextView
-    lateinit var tvCurrentBike : TextView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_myprofile)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_myprofile, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         ref = FirebaseDatabase.getInstance().getReference("userProfileDetails")
-
-        tvTotalRides = findViewById(R.id.tvTotalRides)
-        tvFineDue = findViewById(R.id.tvFineDue)
-        tvLoanDate = findViewById(R.id.tvLoanDate)
-        tvDueDate = findViewById(R.id.tvDueDate)
-        tvName = findViewById(R.id.tvName)
-        tvCurrentBike = findViewById(R.id.tvCurrentBike)
-
-
         getUserProfileData()
-
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        bottomNavigation.setOnNavigationItemSelectedListener { item ->
-
-            when(item.itemId){
-
-                R.id.nav_bikes -> {
-                    val intent = Intent(this,HomeActivity::class.java)
-                    startActivity(intent)
-                }
-
-                R.id.nav_profile -> {
-                    val intent = Intent(this,HomeActivity::class.java)
-                    startActivity(intent)
-                }
-
-                R.id.nav_support -> {
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                }
-
-            }
-            true
-        }
-
     }
 
     fun getUserProfileData(){

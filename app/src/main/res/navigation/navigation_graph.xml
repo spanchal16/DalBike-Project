@@ -3,20 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/homeActivity">
-
-    <activity
-        android:id="@+id/homeActivity"
-        android:name="com.CSCI5708.dalbike.HomeActivity"
-        android:label="activity_home_activity"
-        tools:layout="@layout/activity_home_activity" >
+    app:startDestination="@id/nav_bikes">
+    <fragment
+        android:id="@+id/nav_bikes"
+        android:name="com.CSCI5708.dalbike.BikeListFragment"
+        android:label="fragment_bike_list"
+        tools:layout="@layout/fragment_bike_list" >
         <action
-            android:id="@+id/action_homeActivity_to_detailBikeInfo"
-            app:destination="@id/detailBikeInfo" />
-    </activity>
-    <activity
-        android:id="@+id/detailBikeInfo"
-        android:name="com.CSCI5708.dalbike.DetailBikeInfo"
-        android:label="activity_dal_detail_bike_info"
-        tools:layout="@layout/activity_dal_detail_bike_info" />
+            android:id="@+id/action_bikeListFragment_to_bookBikeFragment"
+            app:destination="@id/bookBikeFragment" />
+        <action
+            android:id="@+id/action_nav_bikes_to_myProfile"
+            app:destination="@id/nav_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookBikeFragment"
+        android:name="com.CSCI5708.dalbike.BookBikeFragment"
+        android:label="fragment_book_bike"
+        tools:layout="@layout/fragment_book_bike" >
+        <argument
+            android:name="bike"
+            app:argType="com.CSCI5708.dalbike.Bike"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.CSCI5708.dalbike.MyProfile"
+        android:label="fragment_myprofile"
+        tools:layout="@layout/fragment_myprofile" />
 </navigation>

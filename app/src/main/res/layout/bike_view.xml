@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    app:cardElevation="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/bikeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Available:"
+            android:layout_margin="5dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerInside" />
+        <TextView
+            android:id="@+id/bikeDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Available:"
+            android:layout_margin="5dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/bikeAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="15dp"
+            android:text="Book"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
