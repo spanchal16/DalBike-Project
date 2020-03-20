@@ -1,6 +1,8 @@
 package com.CSCI5708.dalbike
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -16,10 +18,20 @@ class MyProfile : AppCompatActivity() {
     lateinit var tvDueDate : TextView
     lateinit var tvName : TextView
     lateinit var tvCurrentBike : TextView
-
+    private val sharedPrefFile = "kotlinsharedpreference"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myprofile)
+
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile,
+            Context.MODE_PRIVATE)
+        val isUserLoggedIn = sharedPreferences.getBoolean("is_user_logged_in",false)
+
+        if (!isUserLoggedIn) {
+            intent = Intent(this, loginview::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
 
         ref = FirebaseDatabase.getInstance().getReference("userProfileDetails")
 
