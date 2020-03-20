@@ -24,7 +24,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:background="@drawable/border_shadow"
@@ -45,7 +45,7 @@
 
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_weight="0.5"
@@ -70,7 +70,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_weight="0.5"
@@ -93,7 +93,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_weight="0.5"
@@ -110,7 +110,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:text="Email: bikectr@dal.ca"></TextView>
 
     </LinearLayout>
