@@ -1,5 +1,7 @@
 package com.CSCI5708.dalbike
 
+import android.app.ActivityManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -23,6 +25,7 @@ class DetailBikeInfo : AppCompatActivity() {
     lateinit var bikeDescription : TextView
     lateinit var bikeImage: ImageView
     var bikeNumber: Int = 0;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,17 +52,24 @@ class DetailBikeInfo : AppCompatActivity() {
             when(item.itemId){
 
                 R.id.nav_bikes -> {
-                    val intent = Intent(this,loginview::class.java)
-                    startActivity(intent)
+
+                    val intent = Intent(this,HomeActivity::class.java)
+                    //startActivity(intent)
                 }
 
                 R.id.nav_profile -> {
-                    val intent = Intent(this,MyProfile::class.java)
-                    startActivity(intent)
+                    if(LoggedInUserModel.loggedInUser.equals("")){
+                        val intent = Intent(this,loginview::class.java)
+                        startActivity(intent)
+                    }
+                    else {
+                        val intent = Intent(this, MyProfile::class.java)
+                        startActivity(intent)
+                    }
                 }
 
                 R.id.nav_support -> {
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, SupportActivity::class.java)
                     startActivity(intent)
                 }
 

@@ -20,7 +20,6 @@ class MyProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myprofile)
-
         ref = FirebaseDatabase.getInstance().getReference("userProfileDetails")
 
         tvTotalRides = findViewById(R.id.tvTotalRides)
@@ -45,12 +44,18 @@ class MyProfile : AppCompatActivity() {
                 }
 
                 R.id.nav_profile -> {
-                    val intent = Intent(this,HomeActivity::class.java)
-                    startActivity(intent)
+                    if(LoggedInUserModel.loggedInUser.equals("")){
+                        val intent = Intent(this,loginview::class.java)
+                        startActivity(intent)
+                    }
+                    else {
+                        val intent = Intent(this, MyProfile::class.java)
+                        //startActivity(intent)
+                    }
                 }
 
                 R.id.nav_support -> {
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, SupportActivity::class.java)
                     startActivity(intent)
                 }
 

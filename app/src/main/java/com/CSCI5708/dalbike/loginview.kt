@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,12 +43,18 @@ class loginview : AppCompatActivity() {
                 }
 
                 R.id.nav_profile -> {
-                    val intent = Intent(this,HomeActivity::class.java)
-                    startActivity(intent)
+                    if(LoggedInUserModel.loggedInUser.equals("")){
+                        val intent = Intent(this,loginview::class.java)
+                        startActivity(intent)
+                    }
+                    else {
+                        val intent = Intent(this, MyProfile::class.java)
+                        startActivity(intent)
+                    }
                 }
 
                 R.id.nav_support -> {
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, SupportActivity::class.java)
                     startActivity(intent)
                 }
 
@@ -86,9 +93,12 @@ class loginview : AppCompatActivity() {
                     for(p in p0.children){
                         val user = p.getValue(Users::class.java)
                         if(user!!.bannerId.equals(enteredBanner) && user!!.DOB.equals(enteredDOB)){
-                            System.out.println("done")
+                            LoggedInUserModel.loggedInUser = "yes"
+                            loginSucessfullLoginUser()
+                            break;
                         }else{
-                            System.out.println("error")
+                            val toast = Toast.makeText(applicationContext, "Wrong Banner ID or Date of Birth", Toast.LENGTH_SHORT)
+                            toast.show()
                         }
                     }
                 }
@@ -97,5 +107,10 @@ class loginview : AppCompatActivity() {
 
     }
 
+
+    fun loginSucessfullLoginUser(){
+        val intent = Intent(this, MyProfile::class.java)
+        startActivity(intent)
+    }
 
 }
