@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.CSCI5708.dalbike.model.LoggedInUserModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 
@@ -57,12 +58,18 @@ class MyProfile : AppCompatActivity() {
                 }
 
                 R.id.nav_profile -> {
-                    val intent = Intent(this,HomeActivity::class.java)
-                    startActivity(intent)
+                    if(LoggedInUserModel.loggedInUser.equals("")){
+                        val intent = Intent(this,loginview::class.java)
+                        startActivity(intent)
+                    }
+                    else {
+                        val intent = Intent(this, MyProfile::class.java)
+                        //startActivity(intent)
+                    }
                 }
 
                 R.id.nav_support -> {
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, SupportActivity::class.java)
                     startActivity(intent)
                 }
 

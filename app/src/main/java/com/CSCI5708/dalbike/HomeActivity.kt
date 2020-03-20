@@ -4,13 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import androidx.navigation.findNavController
 import androidx.viewpager.widget.ViewPager
-import com.CSCI5708.dalbike.R
-import com.CSCI5708.dalbike.viewPageAdapter
+import com.CSCI5708.dalbike.model.LoggedInUserModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.custom_layout.*
 
 class HomeActivity : AppCompatActivity() {
 

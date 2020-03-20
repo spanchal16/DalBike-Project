@@ -1,15 +1,11 @@
 package com.CSCI5708.dalbike
 
-import android.app.ActivityManager
-import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.CSCI5708.dalbike.model.LoggedInUserModel
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
@@ -54,7 +50,7 @@ class DetailBikeInfo : AppCompatActivity() {
                 R.id.nav_bikes -> {
 
                     val intent = Intent(this,HomeActivity::class.java)
-                    //startActivity(intent)
+                    startActivity(intent)
                 }
 
                 R.id.nav_profile -> {

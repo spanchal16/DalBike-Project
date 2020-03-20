@@ -3,6 +3,7 @@ package com.CSCI5708.dalbike
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.CSCI5708.dalbike.model.LoggedInUserModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SupportActivity : AppCompatActivity() {

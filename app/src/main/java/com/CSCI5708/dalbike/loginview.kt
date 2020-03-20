@@ -8,8 +8,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
+import com.CSCI5708.dalbike.model.LoggedInUserModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_loginview.*
@@ -45,12 +47,18 @@ class loginview : AppCompatActivity() {
                 }
 
                 R.id.nav_profile -> {
-                    val intent = Intent(this,MyProfile::class.java)
-                    startActivity(intent)
+                    if(LoggedInUserModel.loggedInUser.equals("")){
+                        val intent = Intent(this,loginview::class.java)
+                        startActivity(intent)
+                    }
+                    else {
+                        val intent = Intent(this, MyProfile::class.java)
+                        startActivity(intent)
+                    }
                 }
 
                 R.id.nav_support -> {
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, SupportActivity::class.java)
                     startActivity(intent)
                 }
 
@@ -98,12 +106,16 @@ class loginview : AppCompatActivity() {
                             editor.putBoolean("is_user_logged_in",true)
                             editor.apply()
                             editor.commit()
+                            LoggedInUserModel.loggedInUser = "yes"
+                            loginSucessfullLoginUser()
                             break
                         }else{
                             System.out.println("error")
                             editor.putBoolean("is_user_logged_in",false)
                             editor.apply()
                             editor.commit()
+                            val toast = Toast.makeText(applicationContext, "Wrong Banner ID or Date of Birth", Toast.LENGTH_SHORT)
+                            toast.show()
                         }
                     }
                 }
@@ -117,6 +129,13 @@ class loginview : AppCompatActivity() {
         })
 
     }
+
+
+    fun loginSucessfullLoginUser(){
+        val intent = Intent(this, MyProfile::class.java)
+        startActivity(intent)
+    }
+
 
 
 }
