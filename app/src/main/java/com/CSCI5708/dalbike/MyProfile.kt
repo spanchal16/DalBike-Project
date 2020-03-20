@@ -1,6 +1,8 @@
 package com.CSCI5708.dalbike
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -16,10 +18,21 @@ class MyProfile : AppCompatActivity() {
     lateinit var tvDueDate : TextView
     lateinit var tvName : TextView
     lateinit var tvCurrentBike : TextView
-
+    private val sharedPrefFile = "kotlinsharedpreference"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myprofile)
+
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile,
+            Context.MODE_PRIVATE)
+        val isUserLoggedIn = sharedPreferences.getBoolean("is_user_logged_in",false)
+
+        if (!isUserLoggedIn) {
+            intent = Intent(this, loginview::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
+
         ref = FirebaseDatabase.getInstance().getReference("userProfileDetails")
 
         tvTotalRides = findViewById(R.id.tvTotalRides)
@@ -44,18 +57,12 @@ class MyProfile : AppCompatActivity() {
                 }
 
                 R.id.nav_profile -> {
-                    if(LoggedInUserModel.loggedInUser.equals("")){
-                        val intent = Intent(this,loginview::class.java)
-                        startActivity(intent)
-                    }
-                    else {
-                        val intent = Intent(this, MyProfile::class.java)
-                        //startActivity(intent)
-                    }
+                    val intent = Intent(this,HomeActivity::class.java)
+                    startActivity(intent)
                 }
 
                 R.id.nav_support -> {
-                    val intent = Intent(this, SupportActivity::class.java)
+                    val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                 }
 

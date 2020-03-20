@@ -1,12 +1,13 @@
 package com.CSCI5708.dalbike
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,6 +22,7 @@ class loginview : AppCompatActivity() {
     lateinit var bannerId : EditText
     lateinit var dpd: DatePickerDialog
     lateinit var dateText: TextView
+    private val sharedPrefFile = "kotlinsharedpreference"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,18 +45,12 @@ class loginview : AppCompatActivity() {
                 }
 
                 R.id.nav_profile -> {
-                    if(LoggedInUserModel.loggedInUser.equals("")){
-                        val intent = Intent(this,loginview::class.java)
-                        startActivity(intent)
-                    }
-                    else {
-                        val intent = Intent(this, MyProfile::class.java)
-                        startActivity(intent)
-                    }
+                    val intent = Intent(this,MyProfile::class.java)
+                    startActivity(intent)
                 }
 
                 R.id.nav_support -> {
-                    val intent = Intent(this, SupportActivity::class.java)
+                    val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                 }
 
@@ -78,8 +74,10 @@ class loginview : AppCompatActivity() {
 
 
     fun checkCred(view: View){
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile,Context.MODE_PRIVATE)
         var enteredBanner:String = bannerId.text.toString()
         var enteredDOB = date1.text
+        var flag = -1
         var bannerId:String = ""
         var Dob:String = ""
 
@@ -89,28 +87,36 @@ class loginview : AppCompatActivity() {
 
             }
             override fun onDataChange(p0: DataSnapshot?) {
+                val editor:SharedPreferences.Editor =  sharedPreferences.edit()
+
                 if(p0!!.exists()){
                     for(p in p0.children){
                         val user = p.getValue(Users::class.java)
                         if(user!!.bannerId.equals(enteredBanner) && user!!.DOB.equals(enteredDOB)){
-                            LoggedInUserModel.loggedInUser = "yes"
-                            loginSucessfullLoginUser()
-                            break;
+                            System.out.println("done")
+                            flag = 1
+                            editor.putBoolean("is_user_logged_in",true)
+                            editor.apply()
+                            editor.commit()
+                            break
                         }else{
-                            val toast = Toast.makeText(applicationContext, "Wrong Banner ID or Date of Birth", Toast.LENGTH_SHORT)
-                            toast.show()
+                            System.out.println("error")
+                            editor.putBoolean("is_user_logged_in",false)
+                            editor.apply()
+                            editor.commit()
                         }
                     }
                 }
+                if (flag==1){
+                    intent = Intent(applicationContext, HomeActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                }
+
             }
         })
 
     }
 
-
-    fun loginSucessfullLoginUser(){
-        val intent = Intent(this, MyProfile::class.java)
-        startActivity(intent)
-    }
 
 }
