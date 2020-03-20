@@ -14,7 +14,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="160dp"
         android:ems="10"
-        android:hint="Banner Id"
+        android:textSize="25sp"
+        android:hint="@string/edittext_hint"
         android:drawableLeft="@drawable/user"
         android:background="@drawable/edit_round"
         android:inputType="textPersonName" />
@@ -34,8 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/date"
-            android:width="150dp"
-            android:hint="DOB"
+
+            android:hint="@string/textview_hint"
             android:textSize="25sp" />
 
         <ImageButton
@@ -59,6 +60,24 @@
         android:background="@drawable/button_round"
         android:onClick="checkCred"
         android:text="Login" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/frame_layout"
+        android:layout_alignParentBottom="true"
+        >
 
+        <!-- Main content -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/cardview_dark_background"
+            app:itemTextColor="@color/design_default_color_background"
+            app:menu="@menu/bottom_nav"
+            />
+    </FrameLayout>
 
 </RelativeLayout>
