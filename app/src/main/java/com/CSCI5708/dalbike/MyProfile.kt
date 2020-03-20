@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.CSCI5708.dalbike.model.LoggedInUserModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_myprofile.*
 
 class MyProfile : AppCompatActivity() {
 
@@ -75,6 +76,19 @@ class MyProfile : AppCompatActivity() {
 
             }
             true
+
+        }
+
+        logoutBut.setOnClickListener(){
+            val editor:SharedPreferences.Editor =  sharedPreferences.edit()
+            editor.putBoolean("is_user_logged_in",false)
+            editor.apply()
+            editor.commit()
+            LoggedInUserModel.loggedInUser=""
+            intent = Intent(applicationContext, loginview::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+
         }
 
     }
@@ -89,12 +103,12 @@ class MyProfile : AppCompatActivity() {
                     for(p in p0.children){
                         val userProfile = p.getValue(UserProfileDetails::class.java)
 
-                        tvTotalRides.setText(userProfile!!.totalRides.toString())
-                        tvFineDue.setText(userProfile!!.fineDues.toString())
-                        tvLoanDate.setText(userProfile!!.nextLoadDate)
-                        tvDueDate.setText(userProfile!!.dueDate)
-                        tvName.setText(userProfile!!.userName)
-                        tvCurrentBike.setText(userProfile!!.bikeType)
+                        tvTotalRides.setText("Total rides: " +  userProfile!!.totalRides.toString())
+                        tvFineDue.setText("Fine due: " + userProfile!!.fineDues.toString())
+                        tvLoanDate.setText("Bike borrowed on: " + userProfile!!.nextLoadDate)
+                        tvDueDate.setText("Due date: " + userProfile!!.dueDate)
+                        tvName.setText("User name: " + userProfile!!.userName)
+                        tvCurrentBike.setText("Bike type: " + userProfile!!.bikeType)
                     }
                 }
             }
