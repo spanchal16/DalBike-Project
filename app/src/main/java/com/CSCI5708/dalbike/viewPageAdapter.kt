@@ -35,12 +35,12 @@ class viewPageAdapter(private val context: Context ):PagerAdapter(){
         image.setImageResource(images[position])
         val vp = container as ViewPager
         vp.addView(v,0)
-        v.detailsbutton.setOnClickListener { view ->
-            val intent = Intent(context, DetailBikeInfo::class.java)
-            intent.putExtra("bikeName",position.toString())
-            System.out.println("Switching to next activity "+ position)
-            context.startActivity(intent)
-        }
+//        v.detailsbutton.setOnClickListener { view ->
+//            val intent = Intent(context, DetailBikeInfo::class.java)
+//            intent.putExtra("bikeName",position.toString())
+//            System.out.println("Switching to next activity "+ position)
+//            context.startActivity(intent)
+//        }
         return v
     }
 
