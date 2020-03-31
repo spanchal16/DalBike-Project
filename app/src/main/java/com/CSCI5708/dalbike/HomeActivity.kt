@@ -1,31 +1,33 @@
 package com.CSCI5708.dalbike
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.CSCI5708.dalbike.model.LoggedInUserModel
-import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_home_activity.*
-import kotlinx.android.synthetic.main.custom_layout.*
-import kotlinx.android.synthetic.main.custom_layout.view.*
+
 
 class HomeActivity : AppCompatActivity() {
 
     internal lateinit var recyclerView : RecyclerView
     public var loggedInUser:String = ""
-
+    private val sharedPrefFile = "kotlinsharedpreference"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_activity)
-
 
         recyclerView = findViewById<View>(R.id.viewPager) as RecyclerView
 
@@ -88,6 +90,30 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_qr -> {
+
+            val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile,
+                Context.MODE_PRIVATE)
+            val isUserLoggedIn = sharedPreferences.getBoolean("is_user_logged_in",false)
+
+            if (!isUserLoggedIn) {
+                Toast.makeText(applicationContext,"Please login first to register a bike",Toast.LENGTH_SHORT).show()
+                intent = Intent(this, loginview::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            }else {
+                val intent = Intent(this, CameraActivity::class.java)
+                startActivity(intent)
+            }
+            true
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
+    }
+
     fun navigateToBooking(bike: Bikes) {
         var bookBike = Intent(this, BookBike::class.java)
         bookBike.putExtra("bikeId", bike.bikeId)
@@ -95,6 +121,11 @@ class HomeActivity : AppCompatActivity() {
         startActivity(bookBike)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.button_action_bar, menu);
+        return true
+    }
 
 
 

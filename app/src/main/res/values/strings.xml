@@ -7,4 +7,10 @@
     <string name="app_desc">About us: The Dal Bike Centre is a space that provides free education, workshops, and bike loans to Dalhousie and Kings students. In addition, it is an open DIY space for all community members to work on their bikes and engage in Halifax cycling conversations. As a community space, the Dal Bike Centre strives to promote bicycling as a viable transportation option for students and community members in Halifax. </string>
     <string name="contact_info">Contact us: (902) 494-8345</string>
     <string name="email">Email: bikectr@dal.ca</string>
+    <string name="action_qr">QR scan</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_camera">camera</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
