@@ -109,7 +109,7 @@ class MyProfile : AppCompatActivity() {
                         tvFineDue.setText("Fine due: " + userProfile!!.fineDues.toString())
                         tvLoanDate.setText("Bike borrowed on: " + userProfile!!.nextLoadDate)
                         tvDueDate.setText("Due date: " + userProfile!!.dueDate)
-                        tvName.setText("User name: " + userProfile!!.userName)
+                        tvName.setText(userProfile!!.userName)
                         tvCurrentBike.setText("Bike type: " + userProfile!!.bikeType)
                     }
                 }
