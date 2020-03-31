@@ -25,7 +25,7 @@ class BikeAdapter(
             view.bikeDescription.text = data.bikeDescription
             Picasso.get()
                 .load(data.bikeUrl)
-                .placeholder(R.drawable.bike1)
+//                .placeholder(R.drawable.bike1)
                 .error(R.drawable.bike4)
                 .into(view.image_view)
 
