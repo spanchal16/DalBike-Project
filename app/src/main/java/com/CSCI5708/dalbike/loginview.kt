@@ -79,7 +79,7 @@ class loginview : AppCompatActivity() {
             this,
             android.R.style.Theme_Holo_Dialog,
             DatePickerDialog.OnDateSetListener { datePicker, year, monthOfYear, dayOfMonth ->
-                date1.text = "$dayOfMonth/$monthOfYear/$year"
+                date1.text = "${datePicker.dayOfMonth}/${datePicker.month + 1}/${datePicker.year}"
             },
             year,
             month,
