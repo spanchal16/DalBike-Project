@@ -13,7 +13,10 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
 import kotlin.random.Random
 
-
+/**
+ * Shows all Notification to the user.
+ * Takes context as the argument.
+ */
 fun showNotification(context: Context) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val notificationManager =
@@ -33,6 +36,10 @@ fun showNotification(context: Context) {
     }
 }
 
+/**
+ * Creates Channel if not exists.
+ * Takes Context as an argument.
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 fun createChannel(context: Context): NotificationChannel? {
     //  Create the NotificationChannel
@@ -49,6 +56,11 @@ fun createChannel(context: Context): NotificationChannel? {
 }
 
 
+/**
+ * Creates all the notifications
+ * Takes context and channel as inputs
+ * returns list of all notifications(Builders).
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 fun getAllNotifications(context: Context, channel: NotificationChannel): List<NotificationCompat.Builder>{
     var notifications = mutableListOf<NotificationCompat.Builder>()
@@ -66,6 +78,10 @@ fun getAllNotifications(context: Context, channel: NotificationChannel): List<No
     return notifications
 }
 
+/**
+ * Creates a notification for given title and text.
+ * Takes context and channel as input along with title and text.
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 fun createNotification(context: Context, channel: NotificationChannel, title: String, text: String): NotificationCompat.Builder {
     var builder = NotificationCompat.Builder(context, channel.id)

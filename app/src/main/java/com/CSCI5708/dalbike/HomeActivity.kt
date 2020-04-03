@@ -91,6 +91,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
+        // Show all notifications in this context.
         showNotification(this)
     }
 
