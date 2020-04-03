@@ -10,9 +10,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.CSCI5708.dalbike.model.LoggedInUserModel
+import com.CSCI5708.dalbike.model.UserProfileDetails
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 
+//Class for MyProfile activity
 class MyProfile : AppCompatActivity() {
 
     lateinit var ref: DatabaseReference
@@ -26,7 +28,7 @@ class MyProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myprofile)
-
+        //Shared preference for user information
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile,
             Context.MODE_PRIVATE)
         val isUserLoggedIn = sharedPreferences.getBoolean("is_user_logged_in",false)
@@ -50,7 +52,7 @@ class MyProfile : AppCompatActivity() {
         getUserProfileData()
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation);
-
+        //Handling bottom navigation based on id of the button clicked
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
 
             when(item.itemId){
@@ -104,7 +106,7 @@ class MyProfile : AppCompatActivity() {
                 if(p0!!.exists()){
                     for(p in p0.children){
                         val userProfile = p.getValue(UserProfileDetails::class.java)
-
+                        //Fetching and setting users details from firebase
                         tvTotalRides.setText("Total rides: " +  userProfile!!.totalRides.toString())
                         tvFineDue.setText("Fine due: " + userProfile!!.fineDues.toString())
                         tvLoanDate.setText("Bike borrowed on: " + userProfile!!.nextLoadDate)
@@ -140,8 +142,6 @@ class MyProfile : AppCompatActivity() {
                 Context.MODE_PRIVATE)
             sharedPreferences.edit().remove("is_user_logged_in").commit()
             Toast.makeText(applicationContext,"User logged out", Toast.LENGTH_SHORT).show()
-            //finish();
-            //startActivity(getIntent());
             val intent = Intent(applicationContext, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent . FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
@@ -154,6 +154,7 @@ class MyProfile : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        //inflating menu
         val inflater = menuInflater
         inflater.inflate(R.menu.button_action_bar, menu);
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile,

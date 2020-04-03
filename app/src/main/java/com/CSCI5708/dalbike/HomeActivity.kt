@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.CSCI5708.dalbike.model.Bikes
 import com.CSCI5708.dalbike.model.LoggedInUserModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DataSnapshot
@@ -19,20 +20,21 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_home_activity.*
 
-
+//class for main page i.e. home page
 class HomeActivity : AppCompatActivity() {
 
     internal lateinit var recyclerView : RecyclerView
     public var loggedInUser:String = ""
+    //Shared preference for storing user info
     private val sharedPrefFile = "kotlinsharedpreference"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_activity)
-
+        //Recycler view for showing bike information
         recyclerView = findViewById<View>(R.id.viewPager) as RecyclerView
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation);
-
+        //Handling bottom navigation based on id of the button clicked
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
 
             when(item.itemId){
@@ -63,6 +65,7 @@ class HomeActivity : AppCompatActivity() {
             true
         }
 
+        //inflating on recycler view
         with(viewPager) {
             recyclerView.adapter = BikeAdapter(context, this@HomeActivity::navigateToBooking).also {
                 var list_bike = mutableListOf<Bikes>()
@@ -91,7 +94,7 @@ class HomeActivity : AppCompatActivity() {
         showNotification(this)
     }
 
-
+    //actions for button on action bar for QR and logout
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_qr -> {
 

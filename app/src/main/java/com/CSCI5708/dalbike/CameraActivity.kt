@@ -15,7 +15,9 @@ import com.budiyev.android.codescanner.*
 
 
 class CameraActivity : AppCompatActivity() {
+    //QR codeScanner object
     private lateinit var camerScanner: CodeScanner
+    //Permission code for camera
     private val PERMISSION_REQUEST_CODE = 200
 
 
@@ -30,15 +32,14 @@ class CameraActivity : AppCompatActivity() {
 
         camerScanner = CodeScanner(this, scannerView)
 
-        camerScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
-        camerScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
-        // ex. listOf(BarcodeFormat.QR_CODE)
-        camerScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
-        camerScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
-        camerScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
-        camerScanner.isFlashEnabled = false // Whether to enable flash or not
+        camerScanner.camera = CodeScanner.CAMERA_BACK // using back camera
+        camerScanner.formats = CodeScanner.ALL_FORMATS // Supprt for all kind of barcode
+        camerScanner.autoFocusMode = AutoFocusMode.SAFE // Autofocuse enabled
+        camerScanner.scanMode = ScanMode.SINGLE
+        camerScanner.isAutoFocusEnabled = true //  enable auto focus
+        camerScanner.isFlashEnabled = false //  disable flash
 
-        // Callbacks
+        // Callbacks for qr code scnned
         camerScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
                 Toast.makeText(this, "Bike added to your account ${it.text}", Toast.LENGTH_LONG).show()
@@ -62,6 +63,7 @@ class CameraActivity : AppCompatActivity() {
         super.onPause()
     }
 
+    //Request for permission for camera
     private fun askForCameraPermission() {
         ActivityCompat.requestPermissions(
             this, arrayOf(Manifest.permission.CAMERA),
@@ -95,6 +97,7 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
+    //Display dialog box for permission
     private fun displayDialogBoxForGrantingPermission(
         message: String,
         okListener: DialogInterface.OnClickListener

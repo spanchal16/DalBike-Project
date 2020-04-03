@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.CSCI5708.dalbike.model.LoggedInUserModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+//Support page activity class
 class SupportActivity : AppCompatActivity() {
     private val sharedPrefFile = "kotlinsharedpreference"
 
@@ -19,7 +20,7 @@ class SupportActivity : AppCompatActivity() {
         setContentView(R.layout.activity_support)
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation);
-
+        //Handling bottom navigation based on id of the button clicked
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
 
             when(item.itemId){

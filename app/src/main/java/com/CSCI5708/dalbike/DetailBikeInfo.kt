@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.CSCI5708.dalbike.model.Bikes
 import com.CSCI5708.dalbike.model.LoggedInUserModel
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -12,10 +13,10 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_dal_detail_bike_info.*
 
-
+//Class for detailbike activity
 class DetailBikeInfo : AppCompatActivity() {
 
-
+    //firebase database reference
     lateinit var ref: DatabaseReference
     lateinit var bikeName : TextView
     lateinit var bikeDescription : TextView
@@ -38,11 +39,11 @@ class DetailBikeInfo : AppCompatActivity() {
         //val bikeImage : ImageView = findViewById(R.id.bikeImage)
         bikeImage = findViewById(R.id.bikeImage_firebase)
 
-
+        //fetch data from firebase
         getBikeData(bikeNumber)
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation);
-
+        //Handling bottom navigation based on id of the button clicked
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
 
             when(item.itemId){
@@ -81,14 +82,14 @@ class DetailBikeInfo : AppCompatActivity() {
     }
 
     private fun getBikeData(bikeNumber:Int) {
-
+        //Fetching data from firebase
         ref.addValueEventListener(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError?) {
 
             }
             override fun onDataChange(p0: DataSnapshot?) {
                 if(p0!!.exists()){
-
+                    //populate the bike data to bike object
                     for(p in p0.children){
                         val biker = p.getValue(Bikes::class.java)
                         if(biker!!.bikeId == bikeNumber) {

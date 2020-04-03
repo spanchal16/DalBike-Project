@@ -5,8 +5,8 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.CSCI5708.dalbike.model.Bikes
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.custom_layout.view.*
 import kotlin.reflect.KFunction1

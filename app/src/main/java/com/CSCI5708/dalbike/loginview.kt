@@ -10,14 +10,14 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
 import com.CSCI5708.dalbike.model.LoggedInUserModel
+import com.CSCI5708.dalbike.model.Users
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_loginview.*
 import java.util.*
 
-
+//class for login page
 class loginview : AppCompatActivity() {
 
     lateinit var ref: DatabaseReference

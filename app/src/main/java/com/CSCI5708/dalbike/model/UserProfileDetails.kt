@@ -1,4 +1,4 @@
-package com.CSCI5708.dalbike
+package com.CSCI5708.dalbike.model
 
 class UserProfileDetails(val bikeType:String,
                          val dueDate:String,

@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.book_bike.*
 import java.util.*
 
-
+//class for booking page activity
 class BookBike: AppCompatActivity() {
 
     lateinit var ref: DatabaseReference;
