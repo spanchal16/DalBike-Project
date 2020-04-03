@@ -88,6 +88,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
+        showNotification(this)
     }
 
 
